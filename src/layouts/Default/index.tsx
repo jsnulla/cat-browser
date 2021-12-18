@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-class DefaultLayout extends React.Component {
+class Default extends React.Component {
   constructor(props: React.Component) {
     super(props);
   }
@@ -19,4 +19,4 @@ class DefaultLayout extends React.Component {
   }
 }
 
-export default DefaultLayout;
+export default Default;
