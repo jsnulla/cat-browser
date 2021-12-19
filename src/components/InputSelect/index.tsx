@@ -13,28 +13,28 @@ interface InputOption {
   text: string;
 }
 
-const generateOptionElement = (
-  option: InputOption,
-  disabled: boolean = false
-) => {
-  return (
-    <option
-      disabled={disabled}
-      key={`opt-key-${option.value}`}
-      value={option.value}
-    >
-      {option.text}
-    </option>
-  );
-};
-
-const renderOptions = (options: InputOption[]) => {
-  return options.map((option: InputOption) => {
-    return generateOptionElement(option);
-  });
-};
-
 const InputSelect = (props: Props) => {
+  const generateOptionElement = (
+    option: InputOption,
+    disabled: boolean = false
+  ) => {
+    return (
+      <option
+        disabled={disabled}
+        key={`opt-key-${option.value}`}
+        value={option.value}
+      >
+        {option.text}
+      </option>
+    );
+  };
+
+  const renderOptions = (options: InputOption[]) => {
+    return options.map((option: InputOption) => {
+      return generateOptionElement(option);
+    });
+  };
+
   return (
     <React.Fragment>
       <Form.Label htmlFor={props.id}>{props.label}</Form.Label>
