@@ -6,10 +6,10 @@ const initialState = {
   foo: 'bar',
 };
 
-type Action = {
+interface Action {
   type: string;
-  payload: string;
-};
+  payload: object;
+}
 
 export const appReducer = (state: AppState = initialState, action: Action) => {
   switch (action.type) {
