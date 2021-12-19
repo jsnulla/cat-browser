@@ -7,9 +7,9 @@ export const apiBreedsFetched = (breedOptions: any) => ({
   },
 });
 
-export const appBreedSelected = (selectedBreed: any) => ({
+export const appBreedSelected = (selectedBreedId: string) => ({
   type: actionTypes.APP_BREED_SELECTED,
   payload: {
-    selectedBreed: selectedBreed,
+    selectedBreedId: selectedBreedId,
   },
 });
