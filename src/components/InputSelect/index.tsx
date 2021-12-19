@@ -1,5 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { Form, FormGroup } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { appBreedSelected } from '../../state/actions';
 
 interface Props extends PropsWithChildren<any> {
   id: string;
@@ -14,6 +16,8 @@ interface InputOption {
 }
 
 const InputSelect = (props: Props) => {
+  const dispatch = useDispatch();
+
   const generateOptionElement = (
     option: InputOption,
     disabled: boolean = false
@@ -35,6 +39,10 @@ const InputSelect = (props: Props) => {
     });
   };
 
+  const handleChange = (e: any) => {
+    dispatch(appBreedSelected(e.target.value));
+  };
+
   return (
     <React.Fragment>
       <Form.Label htmlFor={props.id}>{props.label}</Form.Label>
@@ -44,6 +52,7 @@ const InputSelect = (props: Props) => {
           name={props.id}
           id={props.id}
           defaultValue={-1}
+          onChange={handleChange}
         >
           {generateOptionElement(
             {
