@@ -8,7 +8,7 @@ import { apiBreedsFetched } from '../../state/actions';
 
 const Home = () => {
   const [inputOptions, setInputOptions] = useState<any[]>([]);
-  const currentBreedOptions = useSelector((state: any) => state.breedOptions);
+  const selectedBreedId = useSelector((state: any) => state.selectedBreedId);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Home = () => {
       <Row className="mt-2">
         <Col>
           <hr />
-          <Gallery />
+          <Gallery selectedBreedId={selectedBreedId} />
         </Col>
       </Row>
     </React.Fragment>
