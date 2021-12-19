@@ -1,14 +1,27 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import API from '../../api';
 
-const Gallery = () => {
-  const [currentPage, setCurrentPage] = useState<number>(0);
+const Gallery = (props: any) => {
   const [images, setImages] = useState<any[]>([]);
-  const selectedBreedId = useSelector((state: any) => state.selectedBreedId);
+  const [fetchingData, setFetchingData] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log('selected breedId', selectedBreedId);
-  });
+    setImages([]);
+
+    if (props.selectedBreedId) {
+      setFetchingData(true);
+
+      API.getImages({
+        breed_id: props.selectedBreedId,
+        limit: 8,
+        page: 0,
+        order: 'asc',
+      }).then((res) => {
+        setImages(res.data);
+        setFetchingData(false);
+      });
+    }
+  }, [props.selectedBreedId]);
 
   return (
     <div>
