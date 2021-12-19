@@ -10,6 +10,7 @@ const client = axios.create({
 
 interface APIResponse {
   data?: any;
+  paginationCount?: number;
   error?: any;
 }
 
@@ -44,7 +45,13 @@ class API {
     return client
       .get(path, { params: params })
       .then((res) => {
-        return { data: res.data, error: null };
+        const paginationCount = parseInt(res.headers['pagination-count'], 10);
+
+        return {
+          data: res.data,
+          paginationCount: paginationCount,
+          error: null,
+        };
       })
       .catch((err) => {
         console.error(err.message, err.stack);
