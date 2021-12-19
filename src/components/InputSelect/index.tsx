@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Form, InputGroup } from 'react-bootstrap';
+import { Form, FormGroup } from 'react-bootstrap';
 
 interface Props extends PropsWithChildren<any> {
   id: string;
@@ -38,8 +38,13 @@ const InputSelect = (props: Props) => {
   return (
     <React.Fragment>
       <Form.Label htmlFor={props.id}>{props.label}</Form.Label>
-      <InputGroup>
-        <select name={props.id} id={props.id} defaultValue={-1}>
+      <FormGroup>
+        <select
+          className="form-control form-select"
+          name={props.id}
+          id={props.id}
+          defaultValue={-1}
+        >
           {generateOptionElement(
             {
               value: '-1',
@@ -49,7 +54,7 @@ const InputSelect = (props: Props) => {
           )}
           {renderOptions(props.options)}
         </select>
-      </InputGroup>
+      </FormGroup>
     </React.Fragment>
   );
 };

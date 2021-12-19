@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <Row>
-      <Col>
+      <Col md={4}>
         <InputSelect
           id="select-breed-dropdown"
           label="Breeds"
