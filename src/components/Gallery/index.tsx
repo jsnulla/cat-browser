@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Col, Row } from 'react-bootstrap';
 import API from '../../api';
+import Image from './Image';
 
 const Gallery = (props: any) => {
   const [images, setImages] = useState<any[]>([]);
@@ -23,10 +25,29 @@ const Gallery = (props: any) => {
     }
   }, [props.selectedBreedId]);
 
+  const renderStatusMessage = () => {
+    if (props.selectedBreedId) {
+      if (fetchingData) {
+        return <p>Got it! Give me a moment!</p>;
+      }
+    } else {
+      return <p>Select a breed and we'll show you what they look like! 😻</p>;
+    }
+  };
+
+  const renderImages = () => {
+    return images.map((image, index) => {
+      return <Image key={`image-key=${image.id}`} image={image} />;
+    });
+  };
+
   return (
-    <div>
-      <h3>Gallery</h3>
-    </div>
+    <React.Fragment>
+      <Row>
+        <Col className="text-center">{renderStatusMessage()}</Col>
+      </Row>
+      <Row className="my-2">{renderImages()}</Row>
+    </React.Fragment>
   );
 };
 
