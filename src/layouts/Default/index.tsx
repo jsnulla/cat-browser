@@ -13,7 +13,6 @@ class Default extends React.Component {
       <Container>
         <Header />
         {this.props.children}
-        <Footer />
       </Container>
     );
   }
