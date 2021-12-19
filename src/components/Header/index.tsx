@@ -1,11 +1,14 @@
 import React from 'react';
+import { Navbar, Container } from 'react-bootstrap';
 
 class Header extends React.Component {
   render = () => {
     return (
-      <div>
-        <h3>Header</h3>
-      </div>
+      <Navbar sticky="top">
+        <Container>
+          <Navbar.Brand href="/">Cat Browser</Navbar.Brand>
+        </Container>
+      </Navbar>
     );
   };
 }
