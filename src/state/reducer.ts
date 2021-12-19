@@ -7,7 +7,7 @@ interface Action {
 
 interface AppState {
   breedOptions: BreedObject[];
-  selectedBreed: BreedObject | null;
+  selectedBreedId: string;
   error: string;
 }
 
@@ -18,7 +18,7 @@ interface BreedObject {
 
 const initialState = {
   breedOptions: [],
-  selectedBreed: null,
+  selectedBreedId: '',
   error: '',
 };
 
