@@ -29,6 +29,14 @@ const Gallery = (props: any) => {
     if (props.selectedBreedId) {
       if (fetchingData) {
         return <p>Got it! Give me a moment!</p>;
+      } else if (!fetchingData && images.length === 0) {
+        return (
+          <p>
+            We don't seem to have any images for that breed 😿
+            <br />
+            Try another?
+          </p>
+        );
       }
     } else {
       return <p>Select a breed and we'll show you what they look like! 😻</p>;
