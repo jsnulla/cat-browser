@@ -1,3 +1,5 @@
+import * as actions from './actionTypes';
+
 interface Action {
   type: string;
   payload: object;
@@ -22,6 +24,10 @@ const initialState = {
 
 export const appReducer = (state: AppState = initialState, action: Action) => {
   switch (action.type) {
+    case actions.API_BREEDS_FETCHED:
+      return { ...state, ...action.payload };
+    case actions.APP_BREED_SELECTED:
+      return { ...state, ...action.payload };
     default:
       return state;
   }
