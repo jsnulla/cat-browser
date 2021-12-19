@@ -12,23 +12,21 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentBreedOptions.length === 0) {
-      API.getBreeds().then((apiResponse) => {
-        if (apiResponse.data) {
-          const breeds = apiResponse.data.map((breed: any) => {
-            return {
-              value: breed.id,
-              text: breed.name,
-              description: breed.description,
-            };
-          });
+    API.getBreeds().then((apiResponse) => {
+      if (apiResponse.data) {
+        const breeds = apiResponse.data.map((breed: any) => {
+          return {
+            value: breed.id,
+            text: breed.name,
+            description: breed.description,
+          };
+        });
 
-          dispatch(apiBreedsFetched(breeds));
-          setInputOptions(breeds);
-        }
-      });
-    }
-  });
+        dispatch(apiBreedsFetched(breeds));
+        setInputOptions(breeds);
+      }
+    });
+  }, []);
 
   return (
     <React.Fragment>
