@@ -16,6 +16,18 @@ const Image = (props: any) => {
     }
   };
 
+  const renderButton = () => {
+    if (!loaded) {
+      return <Button disabled>Loading</Button>;
+    }
+
+    return (
+      <Button className="form-control" disabled={!loaded}>
+        View details
+      </Button>
+    );
+  };
+
   return (
     <Col xs={12} md={3} className="my-2 text-center">
       <Card>
@@ -28,11 +40,7 @@ const Image = (props: any) => {
             onLoad={() => setLoaded(true)}
           />
         </Card.Body>
-        <Card.Footer>
-          <Button className="form-control" disabled={!loaded}>
-            View details
-          </Button>
-        </Card.Footer>
+        <Card.Footer>{renderButton()}</Card.Footer>
       </Card>
     </Col>
   );
