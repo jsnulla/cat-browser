@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import API from '../../api';
@@ -7,25 +7,26 @@ import InputSelect from '../../components/InputSelect';
 import { apiBreedsFetched } from '../../state/actions';
 
 const Home = () => {
-  const [inputOptions, setInputOptions] = useState<any[]>([]);
+  const breedOptions = useSelector((state: any) => state.breedOptions);
   const selectedBreedId = useSelector((state: any) => state.selectedBreedId);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    API.getBreeds().then((apiResponse) => {
-      if (apiResponse.data) {
-        const breeds = apiResponse.data.map((breed: any) => {
-          return {
-            value: breed.id,
-            text: breed.name,
-            description: breed.description,
-          };
-        });
+    if (breedOptions.length === 0) {
+      API.getBreeds().then((apiResponse) => {
+        if (apiResponse.data) {
+          const breeds = apiResponse.data.map((breed: any) => {
+            return {
+              value: breed.id,
+              text: breed.name,
+              description: breed.description,
+            };
+          });
 
-        dispatch(apiBreedsFetched(breeds));
-        setInputOptions(breeds);
-      }
-    });
+          dispatch(apiBreedsFetched(breeds));
+        }
+      });
+    }
   }, []);
 
   return (
@@ -35,7 +36,7 @@ const Home = () => {
           <InputSelect
             id="select-breed-dropdown"
             label="Breeds"
-            options={inputOptions}
+            options={breedOptions}
             defaultOptionText="Select a breed"
           />
         </Col>
