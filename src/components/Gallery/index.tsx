@@ -69,7 +69,6 @@ const Gallery = (props: any) => {
   };
 
   const handleLoadMore = () => {
-    console.log('currentpage:', lastPageLoaded);
     fetchImages(lastPageLoaded + 1).then((fetchedImages) =>
       setImages(images.concat(fetchedImages))
     );
