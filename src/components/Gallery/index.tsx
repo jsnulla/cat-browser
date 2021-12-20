@@ -11,19 +11,30 @@ const Gallery = (props: any) => {
     setImages([]);
 
     if (props.selectedBreedId) {
-      setFetchingData(true);
-
-      API.getImages({
-        breed_id: props.selectedBreedId,
-        limit: 8,
-        page: 0,
-        order: 'asc',
-      }).then((res) => {
-        setImages(res.data);
-        setFetchingData(false);
-      });
+      fetchImages().then((images) => setImages(images));
     }
   }, [props.selectedBreedId]);
+
+  const fetchImages = (page: number = 0, limit: number = 8) => {
+    setFetchingData(true);
+
+    return API.getImages({
+      breed_id: props.selectedBreedId,
+      limit: limit,
+      page: page,
+      order: 'asc',
+    })
+      .then((fetchResponse) => {
+        if (fetchResponse.data) {
+          return fetchResponse.data;
+        }
+
+        return [];
+      })
+      .finally(() => {
+        setFetchingData(false);
+      });
+  };
 
   const renderStatusMessage = () => {
     if (props.selectedBreedId) {
