@@ -21,11 +21,7 @@ const Image = (props: any) => {
       return <Button disabled>Loading</Button>;
     }
 
-    return (
-      <Button className="form-control" disabled={!loaded}>
-        View details
-      </Button>
-    );
+    return <Button className="form-control">View details</Button>;
   };
 
   return (
