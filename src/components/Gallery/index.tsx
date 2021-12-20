@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Button } from 'react-bootstrap';
 import API from '../../api';
 import Image from './Image';
 
 const Gallery = (props: any) => {
   const [images, setImages] = useState<any[]>([]);
   const [fetchingData, setFetchingData] = useState<boolean>(false);
+  const [lastPageLoaded, setLastPageLoaded] = useState<number>(0);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(false);
 
   useEffect(() => {
     setImages([]);
@@ -15,8 +17,9 @@ const Gallery = (props: any) => {
     }
   }, [props.selectedBreedId]);
 
-  const fetchImages = (page: number = 0, limit: number = 8) => {
+  const fetchImages = (page: number = 0, limit: number = 4) => {
     setFetchingData(true);
+    setHasNextPage(false);
 
     return API.getImages({
       breed_id: props.selectedBreedId,
@@ -26,12 +29,17 @@ const Gallery = (props: any) => {
     })
       .then((fetchResponse) => {
         if (fetchResponse.data) {
+          if (fetchResponse.paginationCount) {
+            setHasNextPage((page + 1) * limit < fetchResponse.paginationCount);
+          }
+
           return fetchResponse.data;
         }
 
         return [];
       })
       .finally(() => {
+        setLastPageLoaded(page);
         setFetchingData(false);
       });
   };
@@ -60,12 +68,35 @@ const Gallery = (props: any) => {
     });
   };
 
+  const handleLoadMore = () => {
+    console.log('currentpage:', lastPageLoaded);
+    fetchImages(lastPageLoaded + 1).then((fetchedImages) =>
+      setImages(images.concat(fetchedImages))
+    );
+  };
+
+  const renderLoadMore = () => {
+    if (hasNextPage) {
+      return (
+        <React.Fragment>
+          <hr />
+          <Button variant="success" onClick={handleLoadMore}>
+            Load more
+          </Button>
+        </React.Fragment>
+      );
+    }
+  };
+
   return (
     <React.Fragment>
       <Row>
         <Col className="text-center">{renderStatusMessage()}</Col>
       </Row>
       <Row className="my-2">{renderImages()}</Row>
+      <Row className="my-2">
+        <Col className="text-center">{renderLoadMore()}</Col>
+      </Row>
     </React.Fragment>
   );
 };
