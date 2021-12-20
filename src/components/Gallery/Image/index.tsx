@@ -6,8 +6,10 @@ import {
   Image as BootstrapImage,
   Spinner,
 } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const Image = (props: any) => {
+  const navigate = useNavigate();
   const [loaded, setLoaded] = useState<boolean>(false);
 
   const renderSpinner = () => {
@@ -16,12 +18,20 @@ const Image = (props: any) => {
     }
   };
 
+  const handleViewDetails = () => {
+    navigate(`/${props.image.id}`);
+  };
+
   const renderButton = () => {
     if (!loaded) {
       return <Button disabled>Loading</Button>;
     }
 
-    return <Button className="form-control">View details</Button>;
+    return (
+      <Button className="form-control" onClick={handleViewDetails}>
+        View details
+      </Button>
+    );
   };
 
   return (
