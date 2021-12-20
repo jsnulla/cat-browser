@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { Form, FormGroup } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { appBreedSelected } from '../../state/actions';
 
 interface Props extends PropsWithChildren<any> {
@@ -16,6 +16,9 @@ interface InputOption {
 }
 
 const InputSelect = (props: Props) => {
+  const currentSelectedBreedId = useSelector(
+    (state: any) => state.selectedBreedId
+  );
   const dispatch = useDispatch();
 
   const generateOptionElement = (
@@ -51,7 +54,7 @@ const InputSelect = (props: Props) => {
           className="form-control form-select"
           name={props.id}
           id={props.id}
-          defaultValue={-1}
+          value={currentSelectedBreedId || -1}
           onChange={handleChange}
         >
           {generateOptionElement(
