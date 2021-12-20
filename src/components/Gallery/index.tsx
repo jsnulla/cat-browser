@@ -63,7 +63,7 @@ const Gallery = (props: any) => {
   };
 
   const renderImages = () => {
-    return images.map((image, index) => {
+    return images.map((image) => {
       return <Image key={`image-key=${image.id}`} image={image} />;
     });
   };
