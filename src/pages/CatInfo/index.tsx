@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Row, Col, Card, Image } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import API from '../../api';
 
@@ -16,11 +17,31 @@ const CatInfo = () => {
     }
   });
 
+  const renderCatDataCard = () => {
+    if (catData) {
+      const breedData = catData.breeds[0];
+
+      return (
+        <Card>
+          <Card.Body>
+            <Image src={catData.url} fluid />
+          </Card.Body>
+          <Card.Footer>
+            <h2>{breedData.name}</h2>
+            <p>{breedData.description}</p>
+            <strong>Origin:</strong> <i>{breedData.origin}</i>
+            <br />
+            <strong>Temperament:</strong> <i>{breedData.temperament}</i>
+          </Card.Footer>
+        </Card>
+      );
+    }
+  };
+
   return (
-    <div>
-      CatInfo! :3
-      <br />
-    </div>
+    <Row>
+      <Col>{renderCatDataCard()}</Col>
+    </Row>
   );
 };
 
