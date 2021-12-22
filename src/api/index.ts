@@ -60,13 +60,13 @@ class API {
   };
 
   static getBreeds = async (
-    params: GetBreedsRequest | void
+    params?: GetBreedsRequest
   ): Promise<APIResponse> => {
     return this.getMethodWrapper('/breeds', params);
   };
 
   static getImages = async (
-    params: GetImagesRequest | void
+    params?: GetImagesRequest
   ): Promise<APIResponse> => {
     return this.getMethodWrapper('/images/search', params);
   };
