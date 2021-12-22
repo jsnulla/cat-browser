@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import API from '../../api';
 import CardWithImage from '../CardWithImage';
 
-const Gallery = (props: any) => {
+interface Props {
+  selectedBreedId: string;
+}
+
+const Gallery = (props: Props) => {
   const [images, setImages] = useState<any[]>([]);
   const [fetchingData, setFetchingData] = useState<boolean>(false);
   const [lastPageLoaded, setLastPageLoaded] = useState<number>(0);
