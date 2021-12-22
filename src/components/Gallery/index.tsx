@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import API from '../../api';
-import Image from './Image';
+import CardWithImage from '../CardWithImage';
 
 const Gallery = (props: any) => {
   const [images, setImages] = useState<any[]>([]);
@@ -64,7 +65,15 @@ const Gallery = (props: any) => {
 
   const renderImages = () => {
     return images.map((image) => {
-      return <Image key={`image-key=${image.id}`} image={image} />;
+      return (
+        <Col className="py-2" xs={12} md={3} key={`key-col-img-${image.id}`}>
+          <CardWithImage imageId={image.id} srcUrl={image.url}>
+            <Link className="btn btn-primary form-control" to={image.id}>
+              View details
+            </Link>
+          </CardWithImage>
+        </Col>
+      );
     });
   };
 
