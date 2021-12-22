@@ -4,7 +4,7 @@ import ImageWithLoadingAnimation from '../ImageWithLoadingAnimation';
 interface Props {
   srcUrl: string;
   imageId: string;
-  children?: any;
+  children: JSX.Element;
 }
 
 const CardWithImage = (props: Props) => {
