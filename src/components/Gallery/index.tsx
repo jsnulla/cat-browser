@@ -34,8 +34,8 @@ const Gallery = (props: Props) => {
     })
       .then((fetchResponse) => {
         if (fetchResponse.data) {
-          if (fetchResponse.paginationCount) {
-            setHasNextPage((page + 1) * limit < fetchResponse.paginationCount);
+          if (fetchResponse.total_items) {
+            setHasNextPage((page + 1) * limit < fetchResponse.total_items);
           }
 
           return fetchResponse.data;
