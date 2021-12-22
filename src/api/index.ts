@@ -8,70 +8,43 @@ const client = axios.create({
   },
 });
 
-interface APIResponse {
-  data?: any;
-  paginationCount?: number;
-  error?: any;
-}
-
-interface APIRequest {}
-
-interface GetBreedsRequest extends APIRequest {
-  attachBreed?: number;
-  page?: number;
-  limit?: number;
-}
-
-interface GetImageRequest extends APIRequest {
-  image_id: string;
-}
-
-interface GetImagesRequest extends APIRequest {
-  size?: string;
-  mime_tpyes?: string[];
-  order?: string;
-  limit?: number;
-  page?: number;
-  category_ids?: number[];
-  format?: string;
-  breed_id?: string;
-}
-
 class API {
-  private static getMethodWrapper = async (
+  private static getMethodWrapper = (
     path: string,
-    params: APIRequest | void
-  ): Promise<APIResponse> => {
+    params: CatAPIRequest | void
+  ): Promise<CatAPIResponse> => {
     return client
       .get(path, { params: params })
-      .then((res) => {
-        const paginationCount = parseInt(res.headers['pagination-count'], 10);
+      .then((response) => {
+        const paginationCount = parseInt(
+          response.headers['pagination-count'],
+          10
+        );
 
         return {
-          data: res.data,
-          paginationCount: paginationCount,
-          error: null,
+          data: response.data,
+          total_items: paginationCount,
         };
       })
       .catch((err) => {
         console.error(err.message, err.stack);
-        return { data: null, error: err.message };
+        return { data: null, total_items: 0, error: err.message };
       });
   };
 
-  static getBreeds = async (
-    params?: GetBreedsRequest
-  ): Promise<APIResponse> => {
+  static getBreeds = (
+    params?: GetAllBreedsRequest
+  ): Promise<GetAllBreedsResponse> => {
     return this.getMethodWrapper('/breeds', params);
   };
 
-  static getImages = async (
+  static getImages = (
     params?: GetImagesRequest
-  ): Promise<APIResponse> => {
+  ): Promise<GetImagesResponse> => {
     return this.getMethodWrapper('/images/search', params);
   };
 
-  static getImage = async (params: GetImageRequest): Promise<APIResponse> => {
+  static getImage = (params: GetImageRequest): Promise<GetImageResponse> => {
     return this.getMethodWrapper(`/images/${params.image_id}`);
   };
 }
