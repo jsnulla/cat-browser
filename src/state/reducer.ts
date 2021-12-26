@@ -1,25 +1,16 @@
 import * as actions from './actionTypes';
 
-interface Action {
-  type: string;
-  payload: object;
-}
-
-interface AppState {
-  breedOptions: API.Breed[];
-  selectedBreedId: string;
-  apiRequestOngoing: boolean;
-  error: string;
-}
-
-const initialState = {
+const initialState: App.State = {
   breedOptions: [],
   selectedBreedId: '',
   apiRequestOngoing: false,
   error: '',
 };
 
-export const appReducer = (state: AppState = initialState, action: Action) => {
+export const appReducer = (
+  state: App.State = initialState,
+  action: App.Action
+) => {
   switch (action.type) {
     case actions.API_REQUEST_INITIATED:
     case actions.API_REQUEST_FINISHED:
