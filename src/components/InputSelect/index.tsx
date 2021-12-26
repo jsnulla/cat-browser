@@ -1,44 +1,31 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { Form, FormGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { appBreedSelected } from '../../state/actions';
 
-interface Props extends PropsWithChildren<any> {
-  id: string;
-  label: string;
-  options: InputOption[];
-  defaultOptionText: string;
-}
-
-interface InputOption {
-  value: string;
-  text: string;
-}
-
-const InputSelect = (props: Props) => {
+const InputSelect = () => {
+  const elementIdentifier = 'breed-select-input';
+  const breedOptions = useSelector((state: App.State) => state.breedOptions);
   const currentSelectedBreedId = useSelector(
-    (state: any) => state.selectedBreedId
+    (state: App.State) => state.selectedBreedId
   );
   const dispatch = useDispatch();
 
   const generateOptionElement = (
-    option: InputOption,
+    value: string,
+    text: string,
     disabled: boolean = false
   ) => {
     return (
-      <option
-        disabled={disabled}
-        key={`opt-key-${option.value}`}
-        value={option.value}
-      >
-        {option.text}
+      <option disabled={disabled} key={`opt-key-${value}`} value={value}>
+        {text}
       </option>
     );
   };
 
-  const renderOptions = (options: InputOption[]) => {
-    return options.map((option: InputOption) => {
-      return generateOptionElement(option);
+  const renderOptions = (breeds: API.Breed[]) => {
+    return breeds.map((breed: API.Breed) => {
+      return generateOptionElement(breed.id, breed.name);
     });
   };
 
@@ -48,23 +35,17 @@ const InputSelect = (props: Props) => {
 
   return (
     <React.Fragment>
-      <Form.Label htmlFor={props.id}>{props.label}</Form.Label>
+      <Form.Label htmlFor={elementIdentifier}>Select a breed</Form.Label>
       <FormGroup>
         <select
           className="form-control form-select"
-          name={props.id}
-          id={props.id}
+          name={elementIdentifier}
+          id={elementIdentifier}
           value={currentSelectedBreedId || -1}
           onChange={handleChange}
         >
-          {generateOptionElement(
-            {
-              value: '-1',
-              text: props.defaultOptionText,
-            },
-            true
-          )}
-          {renderOptions(props.options)}
+          {generateOptionElement('-1', 'Select a breed', true)}
+          {renderOptions(breedOptions)}
         </select>
       </FormGroup>
     </React.Fragment>

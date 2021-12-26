@@ -7,23 +7,25 @@ import InputSelect from '../../components/InputSelect';
 import { apiBreedsFetched } from '../../state/actions';
 
 const Home = () => {
-  const breedOptions = useSelector((state: any) => state.breedOptions);
-  const selectedBreedId = useSelector((state: any) => state.selectedBreedId);
+  const breedOptions = useSelector((state: App.State) => state.breedOptions);
+  const selectedBreedId = useSelector(
+    (state: App.State) => state.selectedBreedId
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (breedOptions.length === 0) {
       API.getBreeds().then((apiResponse) => {
         if (apiResponse.data) {
-          const breeds = apiResponse.data.map((breed: any) => {
+          const fetchedBreeds = apiResponse.data.map((breed: any) => {
             return {
-              value: breed.id,
-              text: breed.name,
+              id: breed.id,
+              name: breed.name,
               description: breed.description,
             };
           });
 
-          dispatch(apiBreedsFetched(breeds));
+          dispatch(apiBreedsFetched(fetchedBreeds));
         }
       });
     }
@@ -33,12 +35,7 @@ const Home = () => {
     <React.Fragment>
       <Row>
         <Col md={4}>
-          <InputSelect
-            id="select-breed-dropdown"
-            label="Breeds"
-            options={breedOptions}
-            defaultOptionText="Select a breed"
-          />
+          <InputSelect />
         </Col>
       </Row>
       <Row className="mt-2">
