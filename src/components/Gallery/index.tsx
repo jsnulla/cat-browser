@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import API from '../../api';
 import CardWithImage from '../CardWithImage';
@@ -9,8 +10,10 @@ interface Props {
 }
 
 const Gallery = (props: Props) => {
+  const apiRequestOngoing = useSelector(
+    (state: App.State) => state.apiRequestOngoing
+  );
   const [images, setImages] = useState<API.Image[]>([]);
-  const [fetchingData, setFetchingData] = useState<boolean>(false);
   const [lastPageLoaded, setLastPageLoaded] = useState<number>(0);
   const [hasNextPage, setHasNextPage] = useState<boolean>(false);
 
@@ -23,7 +26,6 @@ const Gallery = (props: Props) => {
   }, [props.selectedBreedId]);
 
   const fetchImages = (page: number = 0, limit: number = 8) => {
-    setFetchingData(true);
     setHasNextPage(false);
 
     return API.getImages({
@@ -43,15 +45,14 @@ const Gallery = (props: Props) => {
       })
       .finally(() => {
         setLastPageLoaded(page);
-        setFetchingData(false);
       });
   };
 
   const renderStatusMessage = () => {
     if (props.selectedBreedId) {
-      if (fetchingData) {
+      if (apiRequestOngoing) {
         return <p>Got it! Give me a moment!</p>;
-      } else if (!fetchingData && images.length === 0) {
+      } else if (!apiRequestOngoing && images.length === 0) {
         return (
           <p>
             We don't seem to have any images for that breed 😿
