@@ -18,11 +18,16 @@ const Gallery = (props: Props) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(false);
 
   useEffect(() => {
-    setImages([]);
-
     if (props.selectedBreedId) {
       fetchImages().then((images) => setImages(images));
     }
+
+    // clean up
+    return () => {
+      setImages([]);
+      setLastPageLoaded(0);
+      setHasNextPage(false);
+    };
   }, [props.selectedBreedId]);
 
   const fetchImages = (page: number = 0, limit: number = 8) => {
