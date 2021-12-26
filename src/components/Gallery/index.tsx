@@ -38,19 +38,16 @@ const Gallery = (props: Props) => {
       limit: limit,
       page: page,
       order: 'asc',
-    })
-      .then((fetchResponse) => {
-        if (!fetchResponse.error) {
-          setHasNextPage((page + 1) * limit < fetchResponse.total_items);
-
-          return fetchResponse.data;
-        }
-
-        return [];
-      })
-      .finally(() => {
+    }).then((fetchResponse) => {
+      if (!fetchResponse.error) {
+        setHasNextPage((page + 1) * limit < fetchResponse.total_items);
         setLastPageLoaded(page);
-      });
+
+        return fetchResponse.data;
+      }
+
+      return [];
+    });
   };
 
   const renderStatusMessage = () => {
