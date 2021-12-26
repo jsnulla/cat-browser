@@ -24,6 +24,8 @@ const initialState = {
 
 export const appReducer = (state: AppState = initialState, action: Action) => {
   switch (action.type) {
+    case actions.API_ERROR_OCCURED:
+      return { ...state, ...action.payload };
     case actions.API_BREEDS_FETCHED:
       return { ...state, ...action.payload };
     case actions.APP_BREED_SELECTED:
