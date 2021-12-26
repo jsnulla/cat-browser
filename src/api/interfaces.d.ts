@@ -65,7 +65,7 @@ interface GetImageRequest extends CatAPIRequest {
 
 interface CatAPIResponse {
   data;
-  total_items;
+  total_items: number;
   error?: string;
 }
 
