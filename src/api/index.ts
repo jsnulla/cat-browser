@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { apiErrorOccured } from '../state/actions';
+import { store } from '../state/store';
 
 const client = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000',
@@ -26,9 +28,9 @@ class API {
           total_items: paginationCount,
         };
       })
-      .catch((err) => {
-        console.error(err.message, err.stack);
-        return { data: null, total_items: 0, error: err.message };
+      .catch((fetchError) => {
+        store.dispatch(apiErrorOccured(fetchError.message));
+        return { data: null, total_items: 0, error: fetchError.message };
       });
   };
 
