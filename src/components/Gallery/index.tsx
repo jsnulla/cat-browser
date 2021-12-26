@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Gallery = (props: Props) => {
-  const [images, setImages] = useState<any[]>([]);
+  const [images, setImages] = useState<API.Image[]>([]);
   const [fetchingData, setFetchingData] = useState<boolean>(false);
   const [lastPageLoaded, setLastPageLoaded] = useState<number>(0);
   const [hasNextPage, setHasNextPage] = useState<boolean>(false);
