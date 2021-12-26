@@ -22,7 +22,7 @@ const Gallery = (props: Props) => {
     }
   }, [props.selectedBreedId]);
 
-  const fetchImages = (page: number = 0, limit: number = 4) => {
+  const fetchImages = (page: number = 0, limit: number = 8) => {
     setFetchingData(true);
     setHasNextPage(false);
 
