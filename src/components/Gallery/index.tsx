@@ -33,10 +33,8 @@ const Gallery = (props: Props) => {
       order: 'asc',
     })
       .then((fetchResponse) => {
-        if (fetchResponse.data) {
-          if (fetchResponse.total_items) {
-            setHasNextPage((page + 1) * limit < fetchResponse.total_items);
-          }
+        if (!fetchResponse.error) {
+          setHasNextPage((page + 1) * limit < fetchResponse.total_items);
 
           return fetchResponse.data;
         }
