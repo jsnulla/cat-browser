@@ -8,6 +8,7 @@ interface Action {
 interface AppState {
   breedOptions: BreedObject[];
   selectedBreedId: string;
+  apiRequestOngoing: boolean;
   error: string;
 }
 
@@ -19,6 +20,7 @@ interface BreedObject {
 const initialState = {
   breedOptions: [],
   selectedBreedId: '',
+  apiRequestOngoing: false,
   error: '',
 };
 
