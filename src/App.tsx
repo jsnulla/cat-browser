@@ -7,14 +7,14 @@ import CatInfo from './pages/CatInfo';
 
 const App = () => {
   return (
-    <DefaultLayout>
-      <Router>
+    <Router>
+      <DefaultLayout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path=":imageId" element={<CatInfo />} />
         </Routes>
-      </Router>
-    </DefaultLayout>
+      </DefaultLayout>
+    </Router>
   );
 };
 
