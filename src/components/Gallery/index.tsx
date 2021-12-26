@@ -80,13 +80,13 @@ const Gallery = (props: Props) => {
     });
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMoreClick = () => {
     fetchImages(lastPageLoaded + 1).then((fetchedImages) =>
       setImages(images.concat(fetchedImages))
     );
   };
 
-  const renderLoadMore = () => {
+  const renderLoadMoreButton = () => {
     const buttonVariant = apiRequestOngoing ? 'warning' : 'success';
     const buttonText = apiRequestOngoing ? 'Loading...' : 'Load more';
     if (hasNextPage) {
@@ -95,7 +95,7 @@ const Gallery = (props: Props) => {
           <hr />
           <Button
             variant={buttonVariant}
-            onClick={handleLoadMore}
+            onClick={handleLoadMoreClick}
             disabled={apiRequestOngoing}
           >
             {buttonText}
@@ -112,7 +112,7 @@ const Gallery = (props: Props) => {
       </Row>
       <Row className="my-2">{renderImages()}</Row>
       <Row className="my-2">
-        <Col className="text-center">{renderLoadMore()}</Col>
+        <Col className="text-center">{renderLoadMoreButton()}</Col>
       </Row>
     </React.Fragment>
   );
