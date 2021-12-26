@@ -31,8 +31,6 @@ const Gallery = (props: Props) => {
   }, [props.selectedBreedId]);
 
   const fetchImages = (page: number = 0, limit: number = 8) => {
-    setHasNextPage(false);
-
     return API.getImages({
       breed_id: props.selectedBreedId,
       limit: limit,
@@ -89,12 +87,18 @@ const Gallery = (props: Props) => {
   };
 
   const renderLoadMore = () => {
+    const buttonVariant = apiRequestOngoing ? 'warning' : 'success';
+    const buttonText = apiRequestOngoing ? 'Loading...' : 'Load more';
     if (hasNextPage) {
       return (
         <React.Fragment>
           <hr />
-          <Button variant="success" onClick={handleLoadMore}>
-            Load more
+          <Button
+            variant={buttonVariant}
+            onClick={handleLoadMore}
+            disabled={apiRequestOngoing}
+          >
+            {buttonText}
           </Button>
         </React.Fragment>
       );
