@@ -17,8 +17,8 @@ const client = axios.create({
 class API {
   private static getMethodWrapper = (
     path: string,
-    params: CatAPIRequest | void
-  ): Promise<CatAPIResponse> => {
+    params: API.CatAPIRequest | void
+  ): Promise<API.CatAPIResponse> => {
     store.dispatch(apiRequestInitiated());
 
     return client
@@ -44,18 +44,20 @@ class API {
   };
 
   static getBreeds = (
-    params?: GetAllBreedsRequest
-  ): Promise<GetAllBreedsResponse> => {
+    params?: API.GetAllBreedsRequest
+  ): Promise<API.GetAllBreedsResponse> => {
     return this.getMethodWrapper('/breeds', params);
   };
 
   static getImages = (
-    params?: GetImagesRequest
-  ): Promise<GetImagesResponse> => {
+    params?: API.GetImagesRequest
+  ): Promise<API.GetImagesResponse> => {
     return this.getMethodWrapper('/images/search', params);
   };
 
-  static getImage = (params: GetImageRequest): Promise<GetImageResponse> => {
+  static getImage = (
+    params: API.GetImageRequest
+  ): Promise<API.GetImageResponse> => {
     return this.getMethodWrapper(`/images/${params.image_id}`);
   };
 }

@@ -6,15 +6,10 @@ interface Action {
 }
 
 interface AppState {
-  breedOptions: BreedObject[];
+  breedOptions: API.Breed[];
   selectedBreedId: string;
   apiRequestOngoing: boolean;
   error: string;
-}
-
-interface BreedObject {
-  id: string;
-  name: string;
 }
 
 const initialState = {
