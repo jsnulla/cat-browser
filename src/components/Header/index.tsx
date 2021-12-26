@@ -1,10 +1,13 @@
 import { Navbar, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <Navbar sticky="top">
       <Container>
-        <Navbar.Brand href="/">Cat Browser</Navbar.Brand>
+        <Link className="navbar-brand" to="/">
+          Cat Browser
+        </Link>
       </Container>
     </Navbar>
   );
