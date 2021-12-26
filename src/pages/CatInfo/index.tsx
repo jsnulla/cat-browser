@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import API from '../../api';
 import CardWithImage from '../../components/CardWithImage';
 
@@ -35,9 +35,18 @@ const CatInfo = () => {
   };
 
   return (
-    <Row>
-      <Col>{renderCatDataCard()}</Col>
-    </Row>
+    <React.Fragment>
+      <Row className="p-2">
+        <Col>
+          <Link className="btn btn-primary" to="/">
+            Back to the gallery
+          </Link>
+        </Col>
+      </Row>
+      <Row className="p-2">
+        <Col>{renderCatDataCard()}</Col>
+      </Row>
+    </React.Fragment>
   );
 };
 
