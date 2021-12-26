@@ -15,6 +15,7 @@ export const appReducer = (
     case actions.API_REQUEST_INITIATED:
     case actions.API_REQUEST_FINISHED:
     case actions.API_ERROR_OCCURED:
+    case actions.API_ERROR_CLEARED:
     case actions.API_BREEDS_FETCHED:
     case actions.APP_BREED_SELECTED:
       return { ...state, ...action.payload };

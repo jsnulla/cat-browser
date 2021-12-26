@@ -15,6 +15,11 @@ export const apiErrorOccured = (errorMessage: string) => ({
   payload: { error: errorMessage },
 });
 
+export const apiErrorCleared = () => ({
+  type: actionTypes.API_ERROR_CLEARED,
+  payload: { error: '' },
+});
+
 export const apiBreedsFetched = (breedOptions: any) => ({
   type: actionTypes.API_BREEDS_FETCHED,
   payload: {
