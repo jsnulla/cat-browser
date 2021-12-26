@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { apiErrorOccured } from '../state/actions';
+import {
+  apiErrorOccured,
+  apiRequestFinished,
+  apiRequestInitiated,
+} from '../state/actions';
 import { store } from '../state/store';
 
 const client = axios.create({
@@ -15,6 +19,8 @@ class API {
     path: string,
     params: CatAPIRequest | void
   ): Promise<CatAPIResponse> => {
+    store.dispatch(apiRequestInitiated());
+
     return client
       .get(path, { params: params })
       .then((response) => {
@@ -31,6 +37,9 @@ class API {
       .catch((fetchError) => {
         store.dispatch(apiErrorOccured(fetchError.message));
         return { data: null, total_items: 0, error: fetchError.message };
+      })
+      .finally(() => {
+        store.dispatch(apiRequestFinished());
       });
   };
 
