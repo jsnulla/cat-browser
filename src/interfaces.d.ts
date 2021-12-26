@@ -1,3 +1,17 @@
+namespace App {
+  interface Action {
+    type: string;
+    payload: object;
+  }
+
+  interface State {
+    breedOptions: API.Breed[];
+    selectedBreedId: string;
+    apiRequestOngoing: boolean;
+    error: string;
+  }
+}
+
 namespace API {
   interface Breed {
     id: string;
