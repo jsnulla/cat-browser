@@ -5,6 +5,9 @@ import { appBreedSelected } from '../../state/actions';
 
 const InputSelect = () => {
   const elementIdentifier = 'breed-select-input';
+  const apiRequestOngoing = useSelector(
+    (state: App.State) => state.apiRequestOngoing
+  );
   const breedOptions = useSelector((state: App.State) => state.breedOptions);
   const currentSelectedBreedId = useSelector(
     (state: App.State) => state.selectedBreedId
@@ -23,6 +26,17 @@ const InputSelect = () => {
     );
   };
 
+  const isFetchingBreeds = () => {
+    return apiRequestOngoing && breedOptions.length === 0;
+  };
+
+  const renderDefaultOption = () => {
+    const defaultOptionText = isFetchingBreeds()
+      ? 'Fetching list'
+      : 'Select a breed';
+    return generateOptionElement('-1', defaultOptionText, true);
+  };
+
   const renderOptions = (breeds: API.Breed[]) => {
     return breeds.map((breed: API.Breed) => {
       return generateOptionElement(breed.id, breed.name);
@@ -35,16 +49,17 @@ const InputSelect = () => {
 
   return (
     <React.Fragment>
-      <Form.Label htmlFor={elementIdentifier}>Select a breed</Form.Label>
+      <Form.Label htmlFor={elementIdentifier}>Cat breeds</Form.Label>
       <FormGroup>
         <select
           className="form-control form-select"
           name={elementIdentifier}
           id={elementIdentifier}
           value={currentSelectedBreedId || -1}
+          disabled={isFetchingBreeds()}
           onChange={handleChange}
         >
-          {generateOptionElement('-1', 'Select a breed', true)}
+          {renderDefaultOption()}
           {renderOptions(breedOptions)}
         </select>
       </FormGroup>
