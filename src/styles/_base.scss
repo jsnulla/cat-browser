@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
+
 $color-primary: #6e3cbc;
 $color-secondary: #7267cb;
 $color-sub1: #98bae7;
@@ -6,4 +8,36 @@ $color-sub2: #b8e4f0;
 html {
   // Reference: https://snook.ca/archives/html_and_css/font-size-with-rem
   font-size: 62.5%;
+
+  body {
+    font-family: 'Crete Round', serif;
+
+    * {
+      font-size: 1.7rem !important;
+    }
+
+    h1 {
+      font-size: 3.2rem !important;
+    }
+
+    h2 {
+      font-size: 2.4rem !important;
+    }
+
+    h3 {
+      font-size: 1.872rem !important;
+    }
+
+    h4 {
+      font-size: 1.792rem !important;
+    }
+
+    h5 {
+      font-size: 1.328rem !important;
+    }
+
+    h4 {
+      font-size: 1.2rem !important;
+    }
+  }
 }
