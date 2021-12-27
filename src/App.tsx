@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { default as DefaultLayout } from './layouts/Default';
