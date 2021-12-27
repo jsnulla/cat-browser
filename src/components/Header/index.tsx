@@ -7,7 +7,7 @@ const Header = () => {
     <Navbar sticky="top">
       <Container>
         <Link className="navbar-brand" to="/">
-          Cat Browser
+          CatBrowser
         </Link>
       </Container>
     </Navbar>
