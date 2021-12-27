@@ -8,10 +8,10 @@ interface Props {
 
 const Default = (props: Props) => {
   return (
-    <Container>
+    <Container fluid className="p-0">
       <Header />
       <Notification />
-      {props.children}
+      <Container className="py-4">{props.children}</Container>
     </Container>
   );
 };
