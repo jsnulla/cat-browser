@@ -1,3 +1,4 @@
+import './index.scss';
 import { Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
