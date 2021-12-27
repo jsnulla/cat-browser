@@ -1,8 +1,6 @@
-@use '../../styles/base';
-@import url('https://fonts.googleapis.com/css2?family=Pushster&display=swap');
-
+@use '../../styles/colors';
 nav {
-  background-color: base.$color-primary;
+  background-color: colors.$color-primary;
 
   a {
     color: white !important;
