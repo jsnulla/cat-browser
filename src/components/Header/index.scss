@@ -1,0 +1,13 @@
+@use '../../styles/base';
+@import url('https://fonts.googleapis.com/css2?family=Pushster&display=swap');
+
+nav {
+  background-color: base.$color-primary;
+
+  a {
+    color: white !important;
+    font-size: 42px !important;
+    font-size: 4.2rem !important;
+    font-family: 'Pushster', cursive;
+  }
+}
