@@ -3,7 +3,7 @@ import { Col, Row, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import API from '../../api';
-import CardWithImage from '../CardWithImage';
+import ImageWithLoadingAnimation from '../ImageWithLoadingAnimation';
 
 interface Props {
   selectedBreedId: string;
@@ -69,13 +69,17 @@ const Gallery = (props: Props) => {
   const renderImages = () => {
     return images.map((image) => {
       return (
-        <Col className="py-2" xs={12} md={3} key={`key-col-img-${image.id}`}>
-          <CardWithImage imageId={image.id} srcUrl={image.url}>
-            <Link className="btn btn-primary form-control" to={image.id}>
-              View details
-            </Link>
-          </CardWithImage>
-        </Col>
+        <li
+          className="gallery-container__list-item"
+          key={`list-key-${image.id}`}
+        >
+          <Link to={image.id}>
+            <ImageWithLoadingAnimation
+              srcUrl={image.url}
+              altText={image.breeds[0].name}
+            />
+          </Link>
+        </li>
       );
     });
   };
@@ -110,7 +114,12 @@ const Gallery = (props: Props) => {
       <Row>
         <Col className="text-center">{renderStatusMessage()}</Col>
       </Row>
-      <Row className="my-2">{renderImages()}</Row>
+      <Row className="my-2">
+        {/* <Col className="gallery-container">{renderImages()}</Col> */}
+        <Col className="gallery-container">
+          <ul className="gallery-container__list">{renderImages()}</ul>
+        </Col>
+      </Row>
       <Row className="my-2">
         <Col className="text-center">{renderLoadMoreButton()}</Col>
       </Row>
