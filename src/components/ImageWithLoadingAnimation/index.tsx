@@ -5,6 +5,8 @@ import { Fade, Spinner } from 'react-bootstrap';
 interface Props {
   srcUrl: string;
   altText?: string;
+  rounded?: boolean;
+  dropShadow?: boolean;
 }
 
 const ImageWithLoadingAnimation = (props: Props) => {
@@ -24,6 +26,23 @@ const ImageWithLoadingAnimation = (props: Props) => {
     }
   };
 
+  const imageClassList = () => {
+    let classList = [];
+    if (!imageLoaded) {
+      classList.push('d-none');
+    }
+
+    if (props.rounded) {
+      classList.push('rounded');
+    }
+
+    if (props.dropShadow) {
+      classList.push('drop-shadow');
+    }
+
+    return classList.join(' ');
+  };
+
   const imageLoadedHandler = () => {
     setImageLoaded(true);
   };
@@ -33,7 +52,7 @@ const ImageWithLoadingAnimation = (props: Props) => {
       {renderLoadingIndicator()}
       <Fade in={imageLoaded} timeout={500}>
         <img
-          className={imageLoaded ? '' : 'd-none'}
+          className={imageClassList()}
           src={props.srcUrl}
           alt={props.altText}
           onLoad={imageLoadedHandler}
