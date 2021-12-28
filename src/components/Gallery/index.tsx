@@ -78,6 +78,8 @@ const Gallery = (props: Props) => {
             <ImageWithLoadingAnimation
               srcUrl={image.url}
               altText={image.breeds[0].name}
+              rounded={true}
+              dropShadow={true}
             />
           </Link>
         </li>
