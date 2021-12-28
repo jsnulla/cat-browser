@@ -1,3 +1,4 @@
+import './index.scss';
 import React, { useState } from 'react';
 import { Fade, Spinner } from 'react-bootstrap';
 
