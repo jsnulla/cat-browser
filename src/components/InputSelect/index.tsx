@@ -51,7 +51,7 @@ const InputSelect = () => {
     <React.Fragment>
       <div className="p-4 select-container rounded drop-shadow">
         <select
-          className="form-control form-select"
+          className="form-select"
           name={elementIdentifier}
           id={elementIdentifier}
           value={currentSelectedBreedId || -1}
