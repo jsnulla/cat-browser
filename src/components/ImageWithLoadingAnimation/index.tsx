@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Fade, Image, Spinner } from 'react-bootstrap';
+import { Fade, Spinner } from 'react-bootstrap';
 
 interface Props {
   srcUrl: string;
+  altText?: string;
 }
 
 const ImageWithLoadingAnimation = (props: Props) => {
@@ -10,7 +11,15 @@ const ImageWithLoadingAnimation = (props: Props) => {
 
   const renderLoadingIndicator = () => {
     if (!imageLoaded) {
-      return <Spinner className="m-4" animation="grow" variant="info" />;
+      return (
+        <div className="spinner-container">
+          <Spinner
+            className="spinner-container__spinner"
+            animation="grow"
+            variant="info"
+          />
+        </div>
+      );
     }
   };
 
@@ -20,17 +29,15 @@ const ImageWithLoadingAnimation = (props: Props) => {
 
   return (
     <React.Fragment>
-      <div className="text-center">
-        {renderLoadingIndicator()}
-        <Fade in={imageLoaded} timeout={500}>
-          <Image
-            className={imageLoaded ? '' : 'd-none'}
-            src={props.srcUrl}
-            fluid
-            onLoad={imageLoadedHandler}
-          />
-        </Fade>
-      </div>
+      {renderLoadingIndicator()}
+      <Fade in={imageLoaded} timeout={500}>
+        <img
+          className={imageLoaded ? '' : 'd-none'}
+          src={props.srcUrl}
+          alt={props.altText}
+          onLoad={imageLoadedHandler}
+        />
+      </Fade>
     </React.Fragment>
   );
 };
