@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup } from 'react-bootstrap';
+import './index.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { appBreedSelected } from '../../state/actions';
 
@@ -49,8 +49,7 @@ const InputSelect = () => {
 
   return (
     <React.Fragment>
-      <Form.Label htmlFor={elementIdentifier}>Cat breeds</Form.Label>
-      <FormGroup>
+      <div className="p-4 select-container">
         <select
           className="form-control form-select"
           name={elementIdentifier}
@@ -62,7 +61,7 @@ const InputSelect = () => {
           {renderDefaultOption()}
           {renderOptions(breedOptions)}
         </select>
-      </FormGroup>
+      </div>
     </React.Fragment>
   );
 };

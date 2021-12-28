@@ -1,0 +1,32 @@
+@use '../../styles/colors';
+
+.select-container {
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 25%) 0px 1px 5px !important;
+
+  select {
+    text-align: center;
+    border: 0 !important;
+    color: colors.$color-primary !important;
+    border-radius: 0px !important;
+    background-color: transparent !important;
+    // border-bottom: dashed 1px colors.$color-primary !important;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%236e3cbc'><polygon points='0,0 100,0 50,50'/></svg>") !important;
+
+    &:hover {
+      cursor: pointer;
+      color: colors.$color-secondary !important;
+      // border-bottom: dashed 1px colors.$color-secondary !important;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%237267cb'><polygon points='0,0 100,0 50,50'/></svg>") !important;
+    }
+
+    &:focus {
+      box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-image: none !important;
+    }
+  }
+}
