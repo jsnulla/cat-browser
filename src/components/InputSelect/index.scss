@@ -11,7 +11,7 @@
     background-color: transparent !important;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%236e3cbc'><polygon points='0,35 100,35 50,80'/></svg>") !important;
 
-    &:hover {
+    &:hover:enabled {
       cursor: pointer;
       color: colors.$color-secondary !important;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%237267cb'><polygon points='0,35 100,35 50,80'/></svg>") !important;
@@ -19,6 +19,10 @@
 
     &:focus {
       box-shadow: none !important;
+    }
+
+    &:disabled {
+      background-image: none !important;
     }
   }
 }
