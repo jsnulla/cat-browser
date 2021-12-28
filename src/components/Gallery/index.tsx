@@ -1,6 +1,6 @@
 import './index.scss';
 import React, { useEffect, useState } from 'react';
-import { Col, Row, Button } from 'react-bootstrap';
+import { Col, Row, Spinner, Fade } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import API from '../../api';
@@ -94,20 +94,25 @@ const Gallery = (props: Props) => {
   };
 
   const renderLoadMoreButton = () => {
-    const buttonVariant = apiRequestOngoing ? 'warning' : 'success';
-    const buttonText = apiRequestOngoing ? 'Loading...' : 'Load more';
+    const buttonText = apiRequestOngoing ? (
+      <span>
+        Loading&nbsp;
+        <Spinner animation="border" size="sm" />
+      </span>
+    ) : (
+      'Load more'
+    );
     if (hasNextPage) {
       return (
-        <React.Fragment>
-          <hr />
-          <Button
-            variant={buttonVariant}
+        <Fade in={true}>
+          <button
+            className="load-more-container__button drop-shadow rounded"
             onClick={handleLoadMoreClick}
             disabled={apiRequestOngoing}
           >
             {buttonText}
-          </Button>
-        </React.Fragment>
+          </button>
+        </Fade>
       );
     }
   };
@@ -123,7 +128,9 @@ const Gallery = (props: Props) => {
         </Col>
       </Row>
       <Row className="my-2">
-        <Col className="text-center">{renderLoadMoreButton()}</Col>
+        <Col className="text-center load-more-container">
+          {renderLoadMoreButton()}
+        </Col>
       </Row>
     </React.Fragment>
   );

@@ -1,3 +1,5 @@
+@use '../../styles/colors';
+
 .gallery-container {
   width: 100%;
 
@@ -27,9 +29,16 @@
         min-width: 100%;
         max-height: 100%;
         vertical-align: bottom;
-        border-radius: 4px;
-        box-shadow: rgb(0 0 0 / 25%) 0px 1px 5px !important;
       }
     }
+  }
+}
+
+.load-more-container {
+  .load-more-container__button {
+    padding: 12px 36px;
+    color: white;
+    border: 0;
+    background-color: colors.$color-secondary !important;
   }
 }
