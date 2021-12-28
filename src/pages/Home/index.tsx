@@ -34,13 +34,12 @@ const Home = () => {
   return (
     <React.Fragment>
       <Row>
-        <Col md={4}>
+        <Col className="mx-auto" md={4}>
           <InputSelect />
         </Col>
       </Row>
-      <Row className="mt-2">
+      <Row className="p-4">
         <Col>
-          <hr />
           <Gallery selectedBreedId={selectedBreedId} />
         </Col>
       </Row>
