@@ -36,5 +36,13 @@ html {
     h4 {
       font-size: 1.2rem !important;
     }
+
+    .rounded {
+      border-radius: 4px !important;
+    }
+
+    .drop-shadow {
+      box-shadow: rgb(0 0 0 / 25%) 0px 1px 5px !important;
+    }
   }
 }
