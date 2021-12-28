@@ -118,7 +118,6 @@ const Gallery = (props: Props) => {
         <Col className="text-center">{renderStatusMessage()}</Col>
       </Row>
       <Row className="my-2">
-        {/* <Col className="gallery-container">{renderImages()}</Col> */}
         <Col className="gallery-container">
           <ul className="gallery-container__list">{renderImages()}</ul>
         </Col>
