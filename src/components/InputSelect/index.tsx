@@ -55,7 +55,7 @@ const InputSelect = () => {
           name={elementIdentifier}
           id={elementIdentifier}
           value={currentSelectedBreedId || -1}
-          disabled={isFetchingBreeds()}
+          disabled={apiRequestOngoing}
           onChange={handleChange}
         >
           {renderDefaultOption()}
