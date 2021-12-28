@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <Navbar sticky="top">
+    <Navbar className="drop-shadow" sticky="top">
       <Container>
         <Link className="navbar-brand" to="/">
           CatBrowser
