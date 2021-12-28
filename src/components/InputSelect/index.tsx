@@ -49,7 +49,7 @@ const InputSelect = () => {
 
   return (
     <React.Fragment>
-      <div className="p-4 select-container">
+      <div className="p-4 select-container rounded drop-shadow">
         <select
           className="form-control form-select"
           name={elementIdentifier}
