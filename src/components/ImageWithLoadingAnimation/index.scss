@@ -16,6 +16,7 @@
 
   .spinner-container {
     @include absolute-position;
+    z-index: 999;
     background-color: #{colors.$color-secondary}aa;
 
     .spinner-container__spinner {
