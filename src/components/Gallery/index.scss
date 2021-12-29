@@ -14,6 +14,7 @@
       flex-grow: 1;
       margin: 4px;
       list-style: none;
+      background-color: colors.$color-secondary;
 
       @media (max-width: 800px) {
         height: 30vh;
