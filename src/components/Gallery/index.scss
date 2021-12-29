@@ -20,9 +20,12 @@
         height: 30vh;
       }
 
-      @media (max-width: 400px) {
+      @media (max-width: 480px) {
         height: 20vh;
       }
+
+      transition-property: all;
+      transition-duration: 500ms;
 
       img {
         margin: 0 auto;
