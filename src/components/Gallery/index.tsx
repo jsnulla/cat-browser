@@ -71,7 +71,7 @@ const Gallery = (props: Props) => {
     return images.map((image) => {
       return (
         <li
-          className="gallery-container__list-item"
+          className="gallery-container__list-item rounded"
           key={`list-key-${image.id}`}
         >
           <Link to={image.id}>
