@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import API from '../../api';
 import Gallery from '../../components/Gallery';
 import InputSelect from '../../components/InputSelect';
-import { apiBreedsFetched } from '../../state/actions';
+import { apiBreedsFetched, appBreedSelected } from '../../state/actions';
 
 const Home = () => {
+  const [searchParams] = useSearchParams();
   const breedOptions = useSelector((state: App.State) => state.breedOptions);
   const selectedBreedId = useSelector(
     (state: App.State) => state.selectedBreedId
@@ -30,6 +32,13 @@ const Home = () => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    const previousSelectedBreedId = searchParams.get('breed');
+    if (previousSelectedBreedId) {
+      dispatch(appBreedSelected(previousSelectedBreedId));
+    }
+  });
 
   return (
     <React.Fragment>
