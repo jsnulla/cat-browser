@@ -1,12 +1,25 @@
-.spinner-container {
+@use '../../styles/colors';
+@mixin absolute-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.img-container {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-width: 42px;
+  min-height: 42px;
+  position: relative;
 
-  .spinner-container__spinner {
-    margin: 20vw;
-    align-self: center;
+  .spinner-container {
+    @include absolute-position;
+    background-color: #{colors.$color-secondary}aa;
+
+    .spinner-container__spinner {
+      @include absolute-position;
+    }
   }
 }

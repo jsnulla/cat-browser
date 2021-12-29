@@ -1,6 +1,6 @@
 import './index.scss';
-import React, { useState } from 'react';
-import { Fade, Spinner } from 'react-bootstrap';
+import { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 
 interface Props {
   srcUrl: string;
@@ -17,7 +17,7 @@ const ImageWithLoadingAnimation = (props: Props) => {
       return (
         <div className="spinner-container">
           <Spinner
-            className="spinner-container__spinner"
+            className="spinner-container__spinner m-auto"
             animation="grow"
             variant="info"
           />
@@ -28,9 +28,6 @@ const ImageWithLoadingAnimation = (props: Props) => {
 
   const imageClassList = () => {
     let classList = [];
-    if (!imageLoaded) {
-      classList.push('d-none');
-    }
 
     if (props.rounded) {
       classList.push('rounded');
@@ -48,17 +45,15 @@ const ImageWithLoadingAnimation = (props: Props) => {
   };
 
   return (
-    <React.Fragment>
+    <div className="img-container">
       {renderLoadingIndicator()}
-      <Fade in={imageLoaded} timeout={500}>
-        <img
-          className={imageClassList()}
-          src={props.srcUrl}
-          alt={props.altText}
-          onLoad={imageLoadedHandler}
-        />
-      </Fade>
-    </React.Fragment>
+      <img
+        className={imageClassList()}
+        src={props.srcUrl}
+        alt={props.altText}
+        onLoad={imageLoadedHandler}
+      />
+    </div>
   );
 };
 
