@@ -1,4 +1,8 @@
 @use '../../styles/colors';
+@mixin transition-all {
+  transition-property: all;
+  transition-duration: 250ms;
+}
 
 .gallery-container {
   width: 100%;
@@ -10,6 +14,7 @@
     flex-wrap: wrap;
 
     .gallery-container__list-item {
+      @include transition-all;
       height: 40vh;
       flex-grow: 1;
       margin: 4px;
@@ -24,15 +29,19 @@
         height: 20vh;
       }
 
-      transition-property: all;
-      transition-duration: 500ms;
-
       img {
+        @include transition-all;
+        filter: grayscale(80%);
         margin: 0 auto;
         object-fit: cover;
         min-width: 100%;
         max-height: 100%;
         vertical-align: bottom;
+
+        &:hover {
+          filter: grayscale(0%);
+          transform: scale(1.025);
+        }
       }
     }
   }
