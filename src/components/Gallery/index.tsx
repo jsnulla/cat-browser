@@ -106,7 +106,7 @@ const Gallery = (props: Props) => {
       return (
         <Fade in={true}>
           <button
-            className="load-more-container__button drop-shadow rounded"
+            className="button__secondary"
             onClick={handleLoadMoreClick}
             disabled={apiRequestOngoing}
           >
