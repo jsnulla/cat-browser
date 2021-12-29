@@ -2,8 +2,10 @@ import React from 'react';
 import './index.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { appBreedSelected } from '../../state/actions';
+import { useSearchParams } from 'react-router-dom';
 
 const InputSelect = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const elementIdentifier = 'breed-select-input';
   const apiRequestOngoing = useSelector(
     (state: App.State) => state.apiRequestOngoing
@@ -45,6 +47,7 @@ const InputSelect = () => {
 
   const handleChange = (e: any) => {
     dispatch(appBreedSelected(e.target.value));
+    setSearchParams({ breed: e.target.value });
   };
 
   return (
