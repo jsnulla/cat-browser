@@ -64,10 +64,16 @@ html {
     .button__secondary {
       @include rounded;
       @include dropShadow;
+      transition-property: all;
+      transition-duration: 0.25s;
       padding: 12px 36px;
       color: white;
       border: 0;
       background-color: colors.$color-secondary !important;
+
+      &:enabled:hover {
+        background-color: colors.$color-primary !important;
+      }
     }
   }
 }
