@@ -1,8 +1,9 @@
+import './index.scss';
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 import API from '../../api';
-import CardWithImage from '../../components/CardWithImage';
+import ImageWithLoadingAnimation from '../../components/ImageWithLoadingAnimation';
 
 const CatInfo = () => {
   const { imageId } = useParams();
@@ -22,15 +23,19 @@ const CatInfo = () => {
       const breedData = catData.breeds[0];
 
       return (
-        <CardWithImage srcUrl={catData.url} imageId={catData.id}>
-          <React.Fragment>
+        <div className="info-container drop-shadow">
+          <ImageWithLoadingAnimation
+            srcUrl={catData.url}
+            altText={breedData.name}
+          />
+          <div className="info-container__div">
             <h2>{breedData.name}</h2>
             <p>{breedData.description}</p>
             <strong>Origin:</strong> <i>{breedData.origin}</i>
             <br />
             <strong>Temperament:</strong> <i>{breedData.temperament}</i>
-          </React.Fragment>
-        </CardWithImage>
+          </div>
+        </div>
       );
     }
   };
