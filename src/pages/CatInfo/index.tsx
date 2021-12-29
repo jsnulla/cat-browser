@@ -41,7 +41,7 @@ const CatInfo = () => {
   };
 
   const handleBackButton = () => {
-    const params = { selectedBreedId: catData.breeds[0].id };
+    const params = { breed: catData.breeds[0].id };
     navigate({ pathname: '/', search: `?${createSearchParams(params)}` });
   };
 
