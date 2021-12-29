@@ -21,6 +21,7 @@ namespace API {
     life_span: string;
     alt_names: string;
     wikipedia_url: string;
+    origin: string;
     experimental: number;
     hairless: number;
     natural: number;
