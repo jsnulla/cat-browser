@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom';
+import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 import API from '../../api';
 import CardWithImage from '../../components/CardWithImage';
 
@@ -36,7 +36,8 @@ const CatInfo = () => {
   };
 
   const handleBackButton = () => {
-    navigate('/');
+    const params = { selectedBreedId: catData.breeds[0].id };
+    navigate({ pathname: '/', search: `?${createSearchParams(params)}` });
   };
 
   return (
