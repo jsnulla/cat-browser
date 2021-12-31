@@ -45,6 +45,16 @@ const InputSelect = () => {
     });
   };
 
+  const classList = () => {
+    let classList = ['form-select'];
+
+    if (apiRequestOngoing) {
+      classList.push('loading');
+    }
+
+    return classList.join(' ');
+  };
+
   const handleChange = (e: any) => {
     dispatch(appBreedSelected(e.target.value));
     setSearchParams({ breed: e.target.value });
@@ -54,7 +64,7 @@ const InputSelect = () => {
     <React.Fragment>
       <div className="p-4 select-container rounded drop-shadow">
         <select
-          className="form-select"
+          className={classList()}
           name={elementIdentifier}
           id={elementIdentifier}
           value={currentSelectedBreedId || -1}
