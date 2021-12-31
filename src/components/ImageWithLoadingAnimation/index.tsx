@@ -1,6 +1,5 @@
 import './index.scss';
 import { useState } from 'react';
-import { Spinner } from 'react-bootstrap';
 
 interface Props {
   srcUrl: string;
@@ -16,11 +15,13 @@ const ImageWithLoadingAnimation = (props: Props) => {
     if (!imageLoaded) {
       return (
         <div className="spinner-container">
-          <Spinner
-            className="spinner-container__spinner m-auto"
-            animation="grow"
-            variant="info"
-          />
+          <div className="spinner-container__spinner-background m-auto drop-shadow">
+            <img
+              className="spinner-container__spinner m-auto"
+              src="/images/cat-loader-sub1.gif"
+              alt="Loading"
+            />
+          </div>
         </div>
       );
     }
