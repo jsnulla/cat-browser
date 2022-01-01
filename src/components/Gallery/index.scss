@@ -47,3 +47,25 @@
     }
   }
 }
+
+.gallery-status-div {
+  .gallery-status-div__spinner {
+    height: 50vh;
+    position: relative;
+
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  .gallery-status-div__text {
+    h3 {
+      padding: 16px;
+      background-color: white !important;
+    }
+  }
+}
