@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import API from '../../api';
 import Gallery from '../../components/Gallery';
-import InputSelect from '../../components/InputSelect';
+import BreedDropdown from '../../components/BreedDropdown';
 import { apiBreedsFetched, appBreedSelected } from '../../state/actions';
 
 const Home = () => {
@@ -44,7 +44,7 @@ const Home = () => {
     <React.Fragment>
       <Row>
         <Col className="mx-auto" lg={5} md={8}>
-          <InputSelect />
+          <BreedDropdown />
         </Col>
       </Row>
       <Row className="p-4">
