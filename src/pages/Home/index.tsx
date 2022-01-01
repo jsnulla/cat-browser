@@ -43,7 +43,7 @@ const Home = () => {
   return (
     <React.Fragment>
       <Row>
-        <Col className="mx-auto" md={4}>
+        <Col className="mx-auto" md={5}>
           <InputSelect />
         </Col>
       </Row>
