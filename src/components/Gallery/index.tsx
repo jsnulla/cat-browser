@@ -52,18 +52,22 @@ const Gallery = (props: Props) => {
   const renderStatusMessage = () => {
     if (props.selectedBreedId) {
       if (apiRequestOngoing) {
-        return <p>Got it! Give me a moment!</p>;
-      } else if (!apiRequestOngoing && images.length === 0) {
         return (
-          <p>
-            We don't seem to have any images for that breed 😿
-            <br />
-            Try another?
-          </p>
+          <div className="gallery-status-div__spinner">
+            <Spinner className="m-auto" animation="border" variant="light" />
+          </div>
         );
       }
-    } else {
-      return <p>Select a breed and we'll show you what they look like! 😻</p>;
+
+      if (!apiRequestOngoing && images.length === 0) {
+        return (
+          <div className="gallery-status-div__text">
+            <h3 className="rounded drop-shadow m-auto">
+              We don't seem to have any images for that breed 😿
+            </h3>
+          </div>
+        );
+      }
     }
   };
 
@@ -120,7 +124,9 @@ const Gallery = (props: Props) => {
   return (
     <React.Fragment>
       <Row>
-        <Col className="text-center">{renderStatusMessage()}</Col>
+        <Col className="text-center offset-md-3" md="6" sm="12">
+          <div className="gallery-status-div">{renderStatusMessage()}</div>
+        </Col>
       </Row>
       <Row className="my-2">
         <Col className="gallery-container">
