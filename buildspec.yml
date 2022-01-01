@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      - node --version
+      - npm i -g eslint
+      - npm i -g yarn
+      - yarn
+  pre_build:
+    commands:
+      - eslint --fix-dry-run src # only for logging
+      - eslint --fix src
+  build:
+    commands:
+      - yarn build
+  post_build:
+    commands:
+      - aws s3 sync build s3://grumpy.jsnulla.com --delete --cache-control max-age=31536000
+    finally:
+      - aws cloudfront create-invalidation --paths '/*' --distribution-id E1IXX6N2U005EL
+cache:
+  paths:
+    - 'node_modules/**/*'
