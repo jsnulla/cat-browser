@@ -8,6 +8,7 @@ const Header = () => {
       <Container>
         <Link className="navbar-brand" to="/">
           CatBrowser
+          <img src="/images/cat-loader-white.gif" alt="Dancing cat" />
         </Link>
       </Container>
     </Navbar>
