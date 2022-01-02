@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "CatBrowser",
+  "name": "CatBrowser by jsnulla",
   "icons": [
     {
       "src": "favicon.ico",
