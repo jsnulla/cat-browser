@@ -11,7 +11,7 @@ const CatInfo = () => {
   const [catData, setCatData] = useState<API.Image>();
 
   useEffect(() => {
-    if (imageId && catData == null) {
+    if (imageId && catData === undefined) {
       API.getImage({ image_id: imageId }).then(
         (apiResponse: API.GetImageResponse) => {
           setCatData(apiResponse.data);
