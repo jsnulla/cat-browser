@@ -35,10 +35,10 @@ const Home = () => {
 
   useEffect(() => {
     const previousSelectedBreedId = searchParams.get('breed');
-    if (previousSelectedBreedId) {
+    if (previousSelectedBreedId && breedOptions.length > 0) {
       dispatch(appBreedSelected(previousSelectedBreedId));
     }
-  });
+  }, [breedOptions]);
 
   return (
     <React.Fragment>
