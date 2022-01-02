@@ -15,6 +15,9 @@ const client = axios.create({
 });
 
 class API {
+  /**
+   * Wraps the GET requests to make responses, and error handling consistent
+   */
   private static getMethodWrapper = (
     path: string,
     params: API.CatAPIRequest | void
