@@ -10,7 +10,9 @@ const CatInfo = () => {
   const navigate = useNavigate();
   const [catData, setCatData] = useState<API.Image>();
 
+  // Use effect to fetch a cat Image object
   useEffect(() => {
+    // Only execute if the catData is undefined
     if (imageId && catData === undefined) {
       API.getImage({ image_id: imageId }).then(
         (apiResponse: API.GetImageResponse) => {
@@ -20,8 +22,10 @@ const CatInfo = () => {
     }
   });
 
+  // Create the elements to be rendered for the actual information
   const renderCatDataCard = () => {
     if (catData) {
+      // Get Image breed information
       const breedData = catData.breeds[0];
 
       return (
@@ -42,9 +46,11 @@ const CatInfo = () => {
     }
   };
 
+  // Back button handler
   const handleBackButton = () => {
     if (catData) {
       const params = { breed: catData.breeds[0].id };
+      // Use react-router-dom's navigate to push items into history
       navigate({ pathname: '/', search: `?${createSearchParams(params)}` });
     }
   };
