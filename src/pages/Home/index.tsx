@@ -15,11 +15,14 @@ const Home = () => {
   );
   const dispatch = useDispatch();
 
+  // Use effect to load breeds list
   useEffect(() => {
+    // Only execute if breedOptions are not present
     if (breedOptions.length === 0) {
       API.getBreeds().then((apiResponse) => {
         if (apiResponse.data) {
-          const fetchedBreeds = apiResponse.data.map((breed: any) => {
+          // Transform response to store only needed data
+          const fetchedBreeds = apiResponse.data.map((breed: API.Breed) => {
             return {
               id: breed.id,
               name: breed.name,
@@ -27,14 +30,17 @@ const Home = () => {
             };
           });
 
+          // Update app store with fetched breeds from the API
           dispatch(apiBreedsFetched(fetchedBreeds));
         }
       });
     }
   }, []);
 
+  // Use effect to re-select previously selected breed
   useEffect(() => {
     const previousSelectedBreedId = searchParams.get('breed');
+    // Only execute if breedOptions are present / loaded
     if (previousSelectedBreedId && breedOptions.length > 0) {
       dispatch(appBreedSelected(previousSelectedBreedId));
     }
