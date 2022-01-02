@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ImageWithLoadingAnimation = (props: Props) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
   const renderLoadingIndicator = () => {
     if (!imageLoaded) {
