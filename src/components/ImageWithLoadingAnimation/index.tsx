@@ -11,7 +11,9 @@ interface Props {
 const ImageWithLoadingAnimation = (props: Props) => {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
+  // Generate elements for the loading animation / indicator
   const renderLoadingIndicator = () => {
+    // Only return elements if the image is not yet loaded
     if (!imageLoaded) {
       return (
         <div className="spinner-container">
@@ -27,6 +29,7 @@ const ImageWithLoadingAnimation = (props: Props) => {
     }
   };
 
+  // Helper method to add classes to the img tag
   const imageClassList = () => {
     let classList = [];
 
@@ -41,6 +44,7 @@ const ImageWithLoadingAnimation = (props: Props) => {
     return classList.join(' ');
   };
 
+  // Method to handle when the image is loaded
   const imageLoadedHandler = () => {
     setImageLoaded(true);
   };
