@@ -6,6 +6,7 @@ const Notification = () => {
   const appErrorMessage = useSelector((state: App.State) => state.error);
   const dispatch = useDispatch();
 
+  // Handler for when the notification is dismissed / closed
   const handleCloseClick = () => {
     dispatch(apiErrorCleared());
   };
