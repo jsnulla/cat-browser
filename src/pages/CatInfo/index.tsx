@@ -8,13 +8,15 @@ import ImageWithLoadingAnimation from '../../components/ImageWithLoadingAnimatio
 const CatInfo = () => {
   const { imageId } = useParams();
   const navigate = useNavigate();
-  const [catData, setCatData] = useState<any>(null);
+  const [catData, setCatData] = useState<API.Image>();
 
   useEffect(() => {
     if (imageId && catData == null) {
-      API.getImage({ image_id: imageId }).then((response) => {
-        setCatData(response.data);
-      });
+      API.getImage({ image_id: imageId }).then(
+        (apiResponse: API.GetImageResponse) => {
+          setCatData(apiResponse.data);
+        }
+      );
     }
   });
 
@@ -41,8 +43,10 @@ const CatInfo = () => {
   };
 
   const handleBackButton = () => {
-    const params = { breed: catData.breeds[0].id };
-    navigate({ pathname: '/', search: `?${createSearchParams(params)}` });
+    if (catData) {
+      const params = { breed: catData.breeds[0].id };
+      navigate({ pathname: '/', search: `?${createSearchParams(params)}` });
+    }
   };
 
   return (
