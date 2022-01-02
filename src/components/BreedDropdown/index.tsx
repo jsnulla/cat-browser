@@ -16,6 +16,7 @@ const BreedDropdown = () => {
   );
   const dispatch = useDispatch();
 
+  // Helper method to generate elements for each dropdown option
   const generateOptionElement = (
     value: string,
     text: string,
@@ -28,10 +29,12 @@ const BreedDropdown = () => {
     );
   };
 
+  // Helper method to determine if the component is still waiting for state updates
   const isFetchingBreeds = () => {
     return apiRequestOngoing && breedOptions.length === 0;
   };
 
+  // Generate default selected / displayed dropdown option
   const renderDefaultOption = () => {
     const defaultOptionText = isFetchingBreeds()
       ? 'Fetching list'
@@ -39,12 +42,14 @@ const BreedDropdown = () => {
     return generateOptionElement('-1', defaultOptionText, true);
   };
 
+  // Helper method to generate each breed as a dropdown option
   const renderOptions = (breeds: API.Breed[]) => {
     return breeds.map((breed: API.Breed) => {
       return generateOptionElement(breed.id, breed.name);
     });
   };
 
+  // Helper method to add classes for the dropdown
   const classList = () => {
     let classList = ['form-select'];
 
