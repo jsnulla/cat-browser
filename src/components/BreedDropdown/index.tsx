@@ -5,7 +5,7 @@ import { appBreedSelected } from '../../state/actions';
 import { useSearchParams } from 'react-router-dom';
 
 const BreedDropdown = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
   const elementIdentifier = 'breed-select-input';
   const apiRequestOngoing = useSelector(
     (state: App.State) => state.apiRequestOngoing
